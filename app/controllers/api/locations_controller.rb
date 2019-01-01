@@ -17,7 +17,7 @@ class Api::LocationsController < ApplicationController
       # @location = location.create(params.require(:location).permit(:name, :theme))
       @location = Location.create(location_params)
       if @location.valid?
-        render json: @location, status: :created
+        render json: @locations
       else
         render json: @location.errors.full_messages, status: :unprocessable_entity
       end
@@ -31,6 +31,13 @@ class Api::LocationsController < ApplicationController
         render json: { errors: @location.errors.full_messages }, status: :unprocessible_entity
       end
     end
+
+    def destroy
+        @location = Location.find(params[:id])
+        @location.destroy
+        render json: @locations
+    end
+
   
     private
   

@@ -3,8 +3,8 @@ class Api::WeatherController < ApplicationController
   
     def weathers
         # @weathers = RestClient.get("#{@base_url}/#{@api_key}/#{params[:latitude]},#{params[:longitude]}")
-        byebug
-        @weathers = RestClient.get("https://api.darksky.net/forecast/4e51358eb05697d0cf3779072d5d0a9a/#{params[:latitude]},#{params[:longitude]}")
+        
+        @weathers = RestClient.get("https://api.darksky.net/forecast/4e51358eb05697d0cf3779072d5d0a9a/#{params[:latitude]},#{params[:longitude]}?units=si&exclude=flags%2Cminutely")
       render json: @weathers
     end
   
